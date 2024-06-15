@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        String operator = "";
+        String input = "";
+        boolean incorrectInput = true;
+        float firstNum = 0, secondNum = 0;
+
+        // get first number
+        while(incorrectInput) {
+            System.out.println("Enter first number:");
+            input = scan.nextLine();
+            try{
+                firstNum = Float.parseFloat(input);
+                incorrectInput = false;
+            }catch(Exception e) {
+                System.out.println("Invalid input!, try again:");
+            }
+        }
+        // get operator
+        System.out.println("Enter operator");
+        operator = scan.nextLine();
+        while(!operator.matches("[*+/-]"))
+        {
+            System.out.println("Invalid input!, try again:");
+            operator = scan.nextLine();
+        }
+
+        // get second number
+        incorrectInput = true;
+        while(incorrectInput) {
+            System.out.println("Enter second number");
+            input = scan.nextLine();
+            try{
+                secondNum = Float.parseFloat(input);
+                incorrectInput = false;
+            }catch(Exception e) {
+                System.out.println("Invalid input!, try again:");
+            }
+        }
+        incorrectInput = true;
+
+        switch(operator){
+            case "+":
+                System.out.println(firstNum + secondNum);
+                break;
+            case "-":
+                System.out.println(firstNum - secondNum);
+                break;
+            case "/":
+                if(firstNum == 0 || secondNum == 0) {
+                    System.out.println("You cannot divide by 0");
+                    break;
+                }
+                System.out.println(firstNum / secondNum);
+                break;
+            case "*":
+                System.out.println(firstNum * secondNum);
+                break;
+        }
+        input = scan.nextLine();
+    }
+}
